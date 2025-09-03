@@ -1,0 +1,27 @@
+{
+    "name": "mega-menu/mega-menu-solution25",
+    "description": "mega-menu/mega-menu-solution25",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "require": {
+        "shopware/core": "~6.7.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "MegaMenu\\MegaMenuSolution25",
+        "label": {
+            "de-DE": "Skeleton plugin",
+            "en-GB": "Skeleton plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MegaMenu\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MegaMenu\\Tests\\": "tests/"
+        }
+    }
+}

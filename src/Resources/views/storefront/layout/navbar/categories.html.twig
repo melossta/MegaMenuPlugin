@@ -1,0 +1,32 @@
+{#{% sw_extends '@Storefront/storefront/layout/navbar/categories.html.twig' %}#}
+
+
+{#{% block layout_navbar_categories %}#}
+{#    <div class="mega-menu-grid">#}
+{#        {% for treeItem in navigationTree %}#}
+{#            {% set category = treeItem.category %}#}
+{#            <div class="mega-menu-item">#}
+{#                <a href="{{ category.seoUrl }}">#}
+{#                    {{ category.translated.name }}#}
+{#                </a>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{#{% endblock %}#}
+{% sw_extends '@Storefront/storefront/layout/navbar/categories.html.twig' %}
+
+{% block layout_navbar_categories %}
+    <div class="mega-menu-grid">
+        {% for treeItem in navigationTree %}
+            {% set category = treeItem.category %}
+            <div class="mega-menu-item" data-category-id="{{ category.id }}">
+                <a href="{{ category.seoUrl }}">
+                    {{ category.translated.name }}
+                </a>
+                span
+                {# Placeholder for AJAX-loaded subcategories #}
+                <div class="mega-menu-subcategories" style="display:none;"></div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

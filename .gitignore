@@ -1,0 +1,33 @@
+# Ignore node modules (for admin extensions)
+node_modules/
+
+# Ignore build outputs
+/src/Resources/app/administration/build/
+/src/Resources/app/storefront/dist/
+
+# Ignore vendor folder (if you don't want to commit it)
+/vendor/
+
+# Ignore Composer lock file if not needed
+composer.lock
+
+# Ignore IDE/editor config files
+.idea/
+.vscode/
+*.swp
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+*.log
+
+# Ignore coverage/test result files
+coverage/
+junit.xml
+phpunit.xml.cache
+
+# Ignore temporary files
+*.bak
+*.tmp

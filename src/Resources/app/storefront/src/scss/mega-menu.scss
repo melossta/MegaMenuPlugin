@@ -1,0 +1,22 @@
+/* Mega menu container */
+.mega-menu-container,
+.js-mega-menu-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+/* Each item */
+.mega-menu-item a {
+  display: block;
+  padding: 0.5rem 0;
+  font-weight: 500;
+  color: var(--sw-color-brand-primary);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--sw-color-brand-secondary);
+    text-decoration: underline;
+  }
+}

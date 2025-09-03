@@ -1,0 +1,21 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/navbar.html.twig' %}
+
+{% block layout_navigation_list %}
+    <ul class="nav navbar-nav main-navigation">
+        {% for treeItem in navigationTree %}
+            {% set category = treeItem.category %}
+
+            <li class="nav-item js-mega-menu"
+                data-category-id="{{ category.id }}"
+                data-category-url="{{ seoUrl('frontend.navigation.page', { navigationId: category.id }) }}">
+
+                <a href="{{ category.seoUrl }}" class="nav-link">
+                    {{ category.translated.name }}
+                </a>
+
+                {# Placeholder for AJAX subcategories #}
+                <div class="mega-menu-dropdown d-none"></div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

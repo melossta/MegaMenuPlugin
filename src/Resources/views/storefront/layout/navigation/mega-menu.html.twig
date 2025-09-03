@@ -1,0 +1,23 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/navigation.html.twig' %}
+
+{% block layout_main_navigation %}
+    <nav class="main-navigation mega-menu">
+        <ul class="nav nav-main js-mega-menu">
+            {% for category in page.header.navigation.tree %}
+                {% if category.category.customFields.show_in_mega_menu %}
+                    <li class="nav-item mega-menu-item"
+                        data-category-id="{{ category.category.id }}">
+                        <a href="{{ category.category.seoUrls[0].seoPathInfo|default('#') }}"
+                           class="nav-link js-mega-menu-trigger">
+                            {{ category.category.translated.name }}
+                        </a>
+
+                        <div class="mega-menu-dropdown js-mega-menu-dropdown"
+                             data-category-id="{{ category.category.id }}">
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+{% endblock %}
