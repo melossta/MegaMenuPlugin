@@ -103,30 +103,19 @@ export default class MegaMenuAjaxPlugin extends Plugin {
             content.innerHTML = '<div class="mega-menu-loading">Loading...</div>';
 
             // Call the store-api navigation endpoint
-            const res = await fetch(`/store-api/navigation/${categoryId}/${rootId}?depth=1`, {
+            const res = await fetch(`/store-api/navigation/${categoryId}/${categoryId}?depth=1`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'sw-access-key': window.salesChannelAccessKey // important: access key
+                    'sw-access-key': window.salesChannelAccessKey
                 },
-                body: JSON.stringify({
-                    associations: {
-                        media: {}   // tell Store-API: also return media object
-                    }
-                })
             });
 
-
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            const data = await res.json();
-
-            // find hovered category node in the response
-            const node = Array.isArray(data) ? data.find(c => c.id === categoryId) : null;
-            const children = node && node.children ? node.children : [];
+            const children = await res.json(); // array of subcategories
 
             content.innerHTML = this._renderGrid(children);
-            content.dataset.loaded = 'true';
         } catch (err) {
             console.error('MegaMenu AJAX error', err);
             content.innerHTML = `<div class="text-muted small">Couldn’t load menu.</div>`;
