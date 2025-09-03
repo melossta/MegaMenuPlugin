@@ -1,7 +1,11 @@
 {
   "name": "mega-menu-solution25",
   "version": "1.0.0",
-  "description": "Custom Mega Menu styles and scripts",
+  "private": true,
   "license": "MIT",
-  "main": "src/main.js"
+  "description": "Custom Mega Menu styles and scripts",
+  "main": "src/main.js",
+  "shopware": {
+    "storefront": "src/main.js"
+  }
 }

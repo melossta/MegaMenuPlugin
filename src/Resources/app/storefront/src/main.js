@@ -1,4 +1,3 @@
-import './scss/mega-menu.scss';
 import MegaMenuAjaxPlugin from './mega-menu/mega-menu.plugin';
 
 
