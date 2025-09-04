@@ -43,6 +43,19 @@
   color: #6c757d;
   font-size: 0.875rem;
 }
+.mega-menu-grid {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2rem;
+}
+
+.mega-menu-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
 .cms-element-image .cms-image-container.is-cover .cms-image, .cms-element-image .cms-image-container.is-stretch .cms-image {
   width: 40%;
