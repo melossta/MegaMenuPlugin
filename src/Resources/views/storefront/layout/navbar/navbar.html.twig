@@ -1,61 +1,16 @@
-{#{% sw_extends '@Storefront/storefront/layout/navbar/navbar.html.twig' %}#}
-
-
-{#{% block layout_navbar_menu_item %}#}
-{#    {% set category = treeItem.category %}#}
-{#    {% set id = category.id %}#}
-{#    {% set name = category.translated.name %}#}
-{#    {% set hasChildren = treeItem.children|length > 0 %}#}
-
-{#    {% if category.type == 'folder' %}#}
-{#        <li class="nav-item nav-item-{{ id }} {% if hasChildren %}dropdown position-static{% endif %}"#}
-{#            data-mega-menu-cat-id="{{ id }}">#}
-{#            <a class="nav-link nav-item-{{ id }}-link root main-navigation-link p-2{% if hasChildren %} dropdown-toggle{% endif %}"#}
-{#               href="#"#}
-{#               {% if hasChildren %}data-bs-toggle="dropdown"{% endif %}#}
-{#               data-flyout-menu-trigger="{{ id }}"#}
-{#               itemprop="url"#}
-{#               title="{{ name }}">#}
-{#                <span itemprop="name" class="main-navigation-link-text">{{ name }}</span>#}
-{#            </a>#}
-
-{#            {% if hasChildren %}#}
-{#                <div class="dropdown-menu w-100 p-4">#}
-{#                    #}{# AJAX will inject here #}
-{#                    <div class="js-mega-menu-content" data-loaded="false"></div>#}
-{#                </div>#}
-{#            {% endif %}#}
-{#        </li>#}
-{#    {% else %}#}
-{#        <li class="nav-item nav-item-{{ id }} {% if hasChildren %}dropdown position-static{% endif %}"#}
-{#            data-mega-menu-cat-id="{{ id }}">#}
-{#            <a class="nav-link nav-item-{{ id }}-link root main-navigation-link p-2{% if hasChildren %} dropdown-toggle{% endif %}"#}
-{#               href="{{ category.seoUrl }}"#}
-{#               {% if hasChildren %}data-bs-toggle="dropdown"{% endif %}#}
-{#                    {% if category.shouldOpenInNewTab %}target="_blank"{% endif %}#}
-{#               itemprop="url"#}
-{#               title="{{ name }}">#}
-{#                <span itemprop="name" class="main-navigation-link-text">{{ name }}</span>#}
-{#            </a>#}
-
-{#            {% if hasChildren %}#}
-{#                <div class="dropdown-menu w-100 p-4">#}
-{#                    #}{# AJAX will inject here #}
-{#                    <div class="js-mega-menu-content" data-loaded="false"></div>#}
-{#                </div>#}
-{#            {% endif %}#}
-{#        </li>#}
-{#    {% endif %}#}
-{#{% endblock %}#}
 {% sw_extends '@Storefront/storefront/layout/navbar/navbar.html.twig' %}
 
 {% block layout_navbar_menu_item %}
     {% set categoryId = category.id %}
     {% set rootId = context.salesChannel.navigationCategoryId %}
-
+    {% set itemsPerCol = config('MegaMenuSolution25.config.itemsPerColumn')|default(3) %}
+    {% set imageSize = config('MegaMenuSolution25.config.imageSize')|default('m') %}
     <li class="nav-item nav-item-{{ id }} {% if hasChildren %}dropdown position-static{% endif %}"
         data-mega-menu-cat-id="{{ id }}"
-        data-mega-menu-root-id="{{ context.salesChannel.navigationCategoryId }}">
+        data-mega-menu-root-id="{{ context.salesChannel.navigationCategoryId }}"
+        data-sw-access-key="{{ context.salesChannel.accessKey }}"
+        data-items-per-col="{{ itemsPerCol }}"
+        data-image-size="{{ imageSize }}">
 
         <a class="nav-link main-navigation-link" href="{{ category.seoUrl }}">
             {{ name }}
@@ -64,12 +19,10 @@
         {% if hasChildren %}
             <div class="dropdown-menu w-100 p-4 js-mega-menu-content"
                  data-loaded="false">
-                <!-- Filled by AJAX -->
             </div>
         {% endif %}
     </li>
-    <script>
-        window.salesChannelAccessKey = '{{ context.salesChannel.accessKey }}';
-    </script>
+
+
 
 {% endblock %}
